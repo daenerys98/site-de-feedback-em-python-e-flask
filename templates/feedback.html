@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block title %}Feedback{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Escreva sua experiência sobre o produto</h1>
+        <form method="post">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <label for="titulo">Título do seu feedback:</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" required>
+            </div>
+            <div class="form-group">
+                <label for="anotacao">Anotação:</label>
+                <textarea class="form-control" id="anotacao" name="anotacao" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Postar</button>
+        </form>
+    </div>
+{% endblock %}

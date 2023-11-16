@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block content %}
+  <h2>Cadastro</h2>
+  <form method="post">
+    {{ form.csrf_token }}
+    <div class="form-group">
+      <label for="username">Nome de usuário:</label>
+      {{ form.username(class="form-control") }}
+      {% for error in form.username.errors %}
+        <span style="color: red;">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="password">Senha:</label>
+      {{ form.password(class="form-control") }}
+      {% for error in form.password.errors %}
+        <span style="color: red;">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">Confirme a senha:</label>
+      {{ form.confirm_password(class="form-control") }}
+      {% for error in form.confirm_password.errors %}
+        <span style="color: red;">{{ error }}</span>
+      {% endfor %}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+  <p>
+    <a href="{{ url_for('login') }}">Já possui cadastro? Ir para login.</a>
+  </p>
+{% endblock %}

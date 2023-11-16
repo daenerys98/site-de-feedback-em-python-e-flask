@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block title %}Feed{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="text-center my-4">
+            <h1 class="display-4">Feed de Feedbacks</h1>
+        </div>
+
+        {% for feedback in feedbacks %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ feedback.titulo }}</h5>
+                    <p class="card-text">{{ feedback.anotacao }}</p>
+
+                    {% if current_user.is_authenticated and current_user.id == feedback.user_id %}
+                        <a href="{{ url_for('editar', feedback_id=feedback.id) }}" class="btn btn-primary">Editar</a>
+                        <a href="{{ url_for('excluir', feedback_id=feedback.id) }}" class="btn btn-danger">Excluir</a>
+                    {% endif %}
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}
